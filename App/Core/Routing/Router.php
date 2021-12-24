@@ -28,6 +28,7 @@ class Router{
         #404
         if(is_null($this->current_route)){
             $this->distpatch404();
+            return null;
         }
         $this->distpatch($this->current_route);
         

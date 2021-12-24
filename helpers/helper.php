@@ -8,7 +8,8 @@ function asset_url(string $route):string{
     return site_url("assets/".$route);
 }
 
-function view($path){
+function view($path,$data=[]){
+  extract($data);
   $path=str_replace(".",'/',$path);
   $view=BASEPATH."views/{$path}.php";
   include $view;
