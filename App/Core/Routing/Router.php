@@ -11,7 +11,15 @@ class Router{
         $this->request=new Request;
         $this->routes=Route::routes();
         $this->current_route=$this->findRoute($this->request) ?? null;
-        
+        $this->run_route_middleware();
+    }
+    public function run_route_middleware()
+    {
+        $middleware = $this->current_route["middleware"];
+        foreach ($middleware as $middleware_class) {
+            $middleware_obj=new $middleware_class;
+            $middleware_obj->handle();
+        }
     }
     public function findRoute(Request $request){
         foreach ($this->routes as $route) {
