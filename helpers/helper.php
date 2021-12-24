@@ -7,3 +7,9 @@ function site_url(string $route):string{
 function asset_url(string $route):string{
     return site_url("assets/".$route);
 }
+
+function view($path){
+  $path=str_replace(".",'/',$path);
+  $view=BASEPATH."views/{$path}.php";
+  include $view;
+}

@@ -6,4 +6,5 @@ $dotenv = Dotenv\Dotenv::createImmutable(BASEPATH);
 $dotenv->load();
 include BASEPATH."/helpers/helper.php";
 $request=new \App\Core\Request();
+include BASEPATH . "/routes/web.php";
 
