@@ -5,6 +5,7 @@ class Request{
     private $ip;
     private $method;
     private $agent;
+    private $route_pattern;
     public function __construct()
     {
         $this->params=$_REQUEST;
@@ -45,5 +46,17 @@ class Request{
     {
         header("Location: ".site_url($route));
         die();
+    }
+    public function add_route_param($key,$value)
+    {
+        $this->route_pattern[$key]=$value;
+    }
+    public function get_route_param($key)
+    {
+       return $this->route_pattern[$key];
+    }
+    public function get_route_params($key)
+    {
+       return $this->route_pattern;
     }
 }

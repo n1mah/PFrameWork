@@ -1,6 +1,7 @@
 <?php
 
 define("BASEPATH",__DIR__."/../");
+define("PROJECTNAME","پایا فریمورک");
 include BASEPATH . "/vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(BASEPATH);
 $dotenv->load();

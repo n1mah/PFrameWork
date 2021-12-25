@@ -1,6 +1,8 @@
 <?php
 namespace App\Core\Routing;
 use App\Core\Request;
+use Dotenv\Parser\Value;
+
 class Router{
     private $request;
     private $routes;
@@ -13,23 +15,46 @@ class Router{
         $this->current_route=$this->findRoute($this->request) ?? null;
         $this->run_route_middleware();
     }
+    public function regex_matched($route)
+    {
+        global $request;
+        $pattern = "/^". str_replace(['/','{','}'],['\/','(?<','>[-%\w]+)'],$route['uri']) ."$/";
+        preg_match($pattern,$this->request->uri(),$match);
+        if(!$match){
+            return false;
+        }
+        foreach ($match as $key => $value) {
+            if(!is_int($key)){
+            $request->add_route_param($key,$value);
+            }
+        }
+        return true;
+    }
+
     public function run_route_middleware()
     {
-        $middleware = $this->current_route["middleware"];
-        foreach ($middleware as $middleware_class) {
-            $middleware_obj=new $middleware_class;
-            $middleware_obj->handle();
-        }
+        if(isset($this->current_route["middleware"])){
+            $middleware = $this->current_route["middleware"];
+            foreach ($middleware as $middleware_class) {
+                $middleware_obj=new $middleware_class;
+                $middleware_obj->handle();
+            }
+         }
     }
+
+    
     public function findRoute(Request $request){
         foreach ($this->routes as $route) {
-            if(in_array($request->method(),$route['method']) && $request->uri() === $route["uri"]){
+            if(!in_array($request->method(),$route['method'])){
+                return false;
+            }
+            if($this->regex_matched($route)){
                 return $route;
             }
         }
-        
         return null;
     }
+
     public function run()
     {
         #405
