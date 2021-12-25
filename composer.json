@@ -3,7 +3,8 @@
     "description": "paya framework",
     "require": {
         "vlucas/phpdotenv": "^5.4",
-        "hisorange/browser-detect": "^4.4"
+        "hisorange/browser-detect": "^4.4",
+        "catfan/medoo": "^2.1"
     },
     "autoload": {
         "psr-4": {

@@ -5,11 +5,20 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1b69f0fafd86e38ba6b081b2d884a39a8515ea72',
+        'reference' => '4b75936820f4b69ab624cd702ff1c5248080a510',
         'name' => 'nimah/p-frame-work',
         'dev' => true,
     ),
     'versions' => array(
+        'catfan/medoo' => array(
+            'pretty_version' => 'v2.1.4',
+            'version' => '2.1.4.0',
+            'type' => 'framework',
+            'install_path' => __DIR__ . '/../catfan/medoo',
+            'aliases' => array(),
+            'reference' => '65042afa520475664863426d3b44d24604ab031c',
+            'dev_requirement' => false,
+        ),
         'composer/ca-bundle' => array(
             'pretty_version' => '1.3.1',
             'version' => '1.3.1.0',
@@ -88,7 +97,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1b69f0fafd86e38ba6b081b2d884a39a8515ea72',
+            'reference' => '4b75936820f4b69ab624cd702ff1c5248080a510',
             'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
